@@ -33,6 +33,7 @@ def get_number_of_attempts():
     """
 
     number_of_attempts = int(input("Введіть кількість спроб, за яку Ви хотіли б відгадати слово!\n"))
+
     return number_of_attempts
 
 
@@ -154,7 +155,9 @@ def field_of_wonders():
         if len(input_symbols) == 1:
 
             if input_symbols in guessed_word:
-                print(f"Вітання! Літера \"{input_symbols}\" є у загаданому слові.")
+                print(f"Вітання! Літера \"{input_symbols}\" є у загаданому слові. Крім того, оскільки Ви "
+                      f"відгадали літеру, то це відкриття цієї літери не рахується як спроба! \nКількість спроб"
+                      f" зберігається! Уперед!")
                 character_mask = str(users_char_option_handler(input_symbols, character_mask, guessed_word))
                 print(f"Тепер маска виглядає так {character_mask}")
 
@@ -167,25 +170,26 @@ def field_of_wonders():
             else:
                 print(f"Літери \"{input_symbols}\" не має у загаданому слові. Спробуйте ще раз!")
                 print(f"Маска залишається такою як і була {character_mask}.")
+                counter_of_attempts -= 1
+
+                if counter_of_attempts == 0:
+                    print(f"На жаль спроби закінчилися. Цього разу Ви не виграли. Відгадка була \"{guessed_word} ! "
+                          f"Спробуте зіграти ще раз!")
+                    break
 
         elif len(input_symbols) > 1:
 
             if input_symbols == guessed_word:
                 print(f"Вітаємо! Ви виграли! Ви вгадали слово \"{guessed_word}\" !")
                 print(f"Кількість Ваших спроб за які Ви знайшли правильну відповідь становить:"
-                      f" {primary_counter_of_attempts-counter_of_attempts+1} !")
+                      f" {primary_counter_of_attempts - counter_of_attempts+1} !")
                 break
 
             else:
                 print(f"Ви не вгадали. Відгадка була \"{guessed_word}\"! Спробуйте розпочати гру з початку! ")
                 break
 
-        counter_of_attempts -= 1
 
-        if counter_of_attempts == 0:
-            print(f"На жаль спроби закінчилися. Цього разу Ви не виграли. Відгадка була \"{guessed_word} ! "
-                  f"Спробуте зіграти ще раз!")
-            break
 
         print(f"Кількість спроб, що залишилися: {counter_of_attempts} ! Вперед!")
 
