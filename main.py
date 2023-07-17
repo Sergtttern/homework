@@ -181,7 +181,7 @@ def field_of_wonders():
 
             if input_symbols == guessed_word:
                 print(f"Вітаємо! Ви виграли! Ви вгадали слово \"{guessed_word}\" !")
-                print(f"Кількість Ваших спроб за які Ви знайшли правильну відповідь становить:"
+                print(f"Кількість Ваших спроб за які Ви знайшли правильну відповідь становить :"
                       f" {primary_counter_of_attempts - counter_of_attempts+1} !")
                 break
 
